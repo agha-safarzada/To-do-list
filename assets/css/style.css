@@ -1,0 +1,108 @@
+* {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.to-do-list {
+  margin: auto;
+  width: 33%;
+  text-align: center;
+  border: 1px solid #C4C4C4;
+  border-radius: 10px;
+}
+
+.to-do-list .to-do-list-inner {
+  width: 90%;
+  margin: auto;
+}
+
+.to-do-list .to-do-list-inner .items {
+  border: 1px solid #C4C4C4;
+  border-radius: 10px;
+}
+
+.to-do-list .to-do-list-inner h1 {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  font-size: 26px;
+  line-height: 30px;
+  text-align: center;
+  text-transform: capitalize;
+  padding: 10px;
+}
+
+.to-do-list .to-do-list-inner .to-do-sort {
+  margin-left: auto;
+  width: 25px;
+  padding-bottom: 11px;
+  margin-right: 2%;
+}
+
+.to-do-list .to-do-list-inner .to-do-sort img {
+  width: 100%;
+}
+
+.to-do-list .to-do-list-inner .item {
+  text-align: start;
+  padding-left: 10%;
+  margin-bottom: 10px;
+  width: 100%;
+  position: relative;
+  height: 40px;
+}
+
+.to-do-list .to-do-list-inner .item input {
+  outline: none;
+  border-radius: 10px;
+  width: 70%;
+  border: 0;
+  height: 100%;
+}
+
+.to-do-list .to-do-list-inner .item img {
+  position: absolute;
+  right: 10%;
+  top: 27%;
+}
+
+.to-do-list .to-do-list-inner .to-do-add {
+  margin: 20px;
+}
+
+.to-do-list .to-do-list-inner .to-do-add button {
+  margin: auto;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: start;
+      -ms-flex-pack: start;
+          justify-content: flex-start;
+  outline: none;
+  border: 0;
+  width: 40%;
+  background: #833AE0;
+  border-radius: 71px;
+  color: white;
+}
+
+.to-do-list .to-do-list-inner .to-do-add button span:first-child {
+  display: inline-block;
+  width: 25%;
+  padding: 16px;
+  border-radius: 71px;
+  background-color: #9953F1;
+}
+
+.to-do-list .to-do-list-inner .to-do-add button span:last-child {
+  margin: auto;
+}
+
+.to-do-list .yellow {
+  background-color: #FFDC40;
+  height: 28px;
+  border-radius: 10px 10px 0 0;
+}
+/*# sourceMappingURL=style.css.map */
