@@ -27,9 +27,12 @@ class TodoService {
         }
     }
 
-    addTodo(title) {
-        this._todos = [...this._todos, { id: this.gentId(), title }]
-        this._commit()
+    addTodo(title = "") {
+
+        if (!this._todos.some(t => !t.title)) {
+            this._todos = [...this._todos, { id: this.gentId(), title }]
+            this._commit()
+        }
     }
 
     deleteTodo(id) {
@@ -39,12 +42,14 @@ class TodoService {
 
     editTodo(id, title) {
         const todos = [...this._todos]
-        todos[this.getIndex(id)].title = title
-        this._todos = todos
-        this._commit()
+        if (title) {
+            todos[this.getIndex(id)].title = title
+            this._todos = todos
+            this._commit()
+        }
     }
 
-    sortTodo() {
+    sortTodo(direction = true) {
         const todos = [...this._todos].filter(t => t.title).sort((a, b) => {
             if (a.title.toUpperCase() > b.title.toUpperCase()) {
                 return 1;
@@ -52,6 +57,7 @@ class TodoService {
                 return -1
             }
         })
+
         this._todos = todos
         this._commit()
 
@@ -68,9 +74,82 @@ class TodoService {
 
 
 }
-TodoService1 = new TodoService([{ id: 1, title: "Elxan" }, { id: 3, title: "Elxan3" }, { id: 2, title: "Elxan2" }])
-console.log(TodoService1.getTodos())
-TodoService1.sortTodo();
-TodoService1.editTodo(1, "asasaa");
-TodoService1.getTodos();
-TodoService1.getIndex(2);
+
+class DOMManipulator {
+    /**
+     * Creates DOM manipulator instance.
+     * @param {TodoService} service Todo manipulating service.
+     */
+    constructor(service) {
+        this._service = service
+        this._init()
+
+    }
+    _getElement(selector) {
+        const element = document.querySelector(selector);
+
+        if (element) {
+            return element;
+        }
+    }
+
+    _init() {
+
+        const addBtn = this._getElement(".btn")
+        const sortBtn = this._getElement(".to-do-sort")
+
+        addBtn.addEventListener("click", e => {
+            e.preventDefault()
+            this._handleAdd()
+        })
+        this._displayTodos()
+
+        sortBtn.addEventListener("click", e => this._handleSort())
+    }
+    _displayTodos() {
+        const todoList = this._getElement(".items")
+        const todos = this._service.getTodos()
+        const items = todos.map(t => {
+            const item = document.createElement("div")
+            item.classList.add("item")
+            const todoInput = document.createElement("input")
+            todoInput.type = "text"
+            todoInput.required = "salam"
+            todoInput.addEventListener("change", e => this._handleEdit(t.id, e.target.value));
+            const deleteBtnimg = document.createElement("img")
+            deleteBtnimg.src = "img/Group 56.png"
+            deleteBtnimg.addEventListener('click', e => {
+                this._handleDelete(t.id)
+            });
+            item.append(todoInput)
+            item.append(deleteBtnimg)
+            todoInput.value = t.title
+
+            return item
+        })
+        todoList.innerHTML = '';
+        todoList.append(...items)
+    }
+
+    _handleAdd() {
+        this._service.addTodo()
+        this._displayTodos()
+
+    }
+
+    _handleEdit(id, title) {
+        this._service.editTodo(id, title)
+        this._displayTodos()
+    }
+
+    _handleDelete(id) {
+        this._service.deleteTodo(id)
+        this._displayTodos()
+    }
+
+    _handleSort() {
+        this._service.sortTodo()
+        this._displayTodos()
+    }
+}
+const manipulator = new DOMManipulator(new TodoService([{ id: 1, title: "" }]));
