@@ -50,6 +50,7 @@ class TodoService {
     }
 
     sortTodo(direction = true) {
+
         const todos = [...this._todos].filter(t => t.title).sort((a, b) => {
             if (a.title.toUpperCase() > b.title.toUpperCase()) {
                 return 1;
@@ -57,6 +58,9 @@ class TodoService {
                 return -1
             }
         })
+        if (!direction) {
+            todos.reverse()
+        }
 
         this._todos = todos
         this._commit()
@@ -97,14 +101,15 @@ class DOMManipulator {
 
         const addBtn = this._getElement(".btn")
         const sortBtn = this._getElement(".to-do-sort")
-
         addBtn.addEventListener("click", e => {
             e.preventDefault()
             this._handleAdd()
         })
+        this.sortDirection = true
         this._displayTodos()
 
         sortBtn.addEventListener("click", e => this._handleSort())
+
     }
     _displayTodos() {
         const todoList = this._getElement(".items")
@@ -117,7 +122,13 @@ class DOMManipulator {
             todoInput.required = "salam"
             todoInput.addEventListener("change", e => this._handleEdit(t.id, e.target.value));
             const deleteBtnimg = document.createElement("img")
-            deleteBtnimg.src = "img/Group 56.png"
+            deleteBtnimg.src = "img/delete-simple.png"
+            deleteBtnimg.addEventListener("mouseover", e => {
+                deleteBtnimg.src = "img/delete-color.png"
+            })
+            deleteBtnimg.addEventListener("mouseout", e => {
+                deleteBtnimg.src = "img/delete-simple.png"
+            })
             deleteBtnimg.addEventListener('click', e => {
                 this._handleDelete(t.id)
             });
@@ -148,8 +159,17 @@ class DOMManipulator {
     }
 
     _handleSort() {
-        this._service.sortTodo()
+        const sortImg = this._getElement(".to-do-sort img")
+
+        this._service.sortTodo(this.sortDirection);
+        this.sortDirection = !this.sortDirection;
         this._displayTodos()
+        if (this.sortDirection) {
+            sortImg.src = "img/sort-top.png"
+        } else if (!this.sortDirection) {
+            sortImg.src = "img/sort-down.png"
+        }
+
     }
 }
 const manipulator = new DOMManipulator(new TodoService([{ id: 1, title: "" }]));

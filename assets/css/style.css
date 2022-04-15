@@ -39,6 +39,12 @@
   width: 25px;
   padding-bottom: 11px;
   margin-right: 2%;
+  -webkit-transition: opacity 0.5s;
+  transition: opacity 0.5s;
+}
+
+.to-do-list .to-do-list-inner .to-do-sort:hover {
+  opacity: 0.5;
 }
 
 .to-do-list .to-do-list-inner .to-do-sort img {
@@ -73,6 +79,8 @@
 }
 
 .to-do-list .to-do-list-inner .to-do-add button {
+  -webkit-transition: opacity 0.7s;
+  transition: opacity 0.7s;
   margin: auto;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -98,6 +106,10 @@
 
 .to-do-list .to-do-list-inner .to-do-add button span:last-child {
   margin: auto;
+}
+
+.to-do-list .to-do-list-inner .to-do-add button:hover {
+  opacity: 0.8;
 }
 
 .to-do-list .yellow {
