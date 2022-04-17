@@ -79,6 +79,8 @@ class TodoService {
 
 }
 
+
+
 class DOMManipulator {
     /**
      * Creates DOM manipulator instance.
@@ -87,6 +89,9 @@ class DOMManipulator {
     constructor(service) {
         this._service = service
         this._init()
+        if (service instanceof TodoService) {
+            console.log("no")
+        }
 
     }
     _getElement(selector) {
