@@ -61,6 +61,8 @@
 }
 
 .to-do-list .to-do-list-inner .item input {
+  font-weight: 400;
+  font-size: 14px;
   outline: none;
   border-radius: 10px;
   width: 70%;
@@ -98,13 +100,15 @@
 
 .to-do-list .to-do-list-inner .to-do-add button span:first-child {
   display: inline-block;
-  width: 25%;
+  width: 40px;
   padding: 16px;
   border-radius: 71px;
   background-color: #9953F1;
 }
 
 .to-do-list .to-do-list-inner .to-do-add button span:last-child {
+  font-weight: 400;
+  font-size: 14px;
   margin: auto;
 }
 
@@ -116,5 +120,70 @@
   background-color: #FFDC40;
   height: 28px;
   border-radius: 10px 10px 0 0;
+}
+
+.error {
+  border: 1px solid red;
+  background-color: #ac5151;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: 33%;
+  margin: auto;
+  height: 100px;
+  border-radius: 7px;
+  font-size: 25px;
+  position: fixed;
+  bottom: 40px;
+  right: 33.5%;
+}
+
+@media (max-width: 1000px) {
+  .to-do-list {
+    width: 47%;
+  }
+}
+
+@media (max-width: 800px) {
+  .to-do-list {
+    width: 53%;
+  }
+}
+
+@media (max-width: 650px) {
+  .to-do-list {
+    width: 63%;
+  }
+}
+
+@media (max-width: 650px) {
+  .to-do-list {
+    width: 79%;
+  }
+}
+
+@media (max-width: 450px) {
+  .to-do-list {
+    width: 90%;
+  }
+}
+
+@media (max-width: 450px) {
+  .to-do-list {
+    width: 95%;
+  }
+  .to-do-list .to-do-list-inner .to-do-add button span:last-child {
+    font-size: 12px;
+  }
+  .to-do-list .to-do-list-inner .to-do-add button span:first-child {
+    font-size: 10px;
+    width: 20px;
+  }
 }
 /*# sourceMappingURL=style.css.map */
